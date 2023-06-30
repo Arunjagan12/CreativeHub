@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { NavLinks } from "@/constant";
-//import { getCurrentUser } from "@/lib/session";
+import { getCurrentUser } from "@/lib/session";
 
-//import AuthProviders from "./AuthProviders";
-//import Button from "./Button";
-//import ProfileMenu from "./ProfileMenu";
+import AuthProviders from "./AuthProviders";
+import Button from "./Button";
+import ProfileMenu from "./ProfileMenu";
 
 const Navbar = async () => {
   const session = await getCurrentUser()
@@ -34,14 +34,14 @@ const Navbar = async () => {
       <div className='flexCenter gap-4'>
         {session?.user ? (
           <>
-            ProfileMenu
+            <ProfileMenu session={session} />
 
             <Link href="/create-project">
-              Button    
+              <Button title='Share work' />
             </Link>
           </>
         ) : (
-          AuthProviders 
+          <AuthProviders />
         )}
       </div>
     </nav>
